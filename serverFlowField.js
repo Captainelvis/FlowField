@@ -18,6 +18,7 @@ http.listen(port, () => "App listening on Port: " + port)
 //console.log("my server is running"); //connected
 var io = require('socket.io')(http);
 io.on('connection', newConnection);
+
 let settings={}
 
 //Allgemeine Variablen für das FLowField
@@ -32,6 +33,7 @@ var vehicleNumber = 4;
 //Anzahl Clients
 var totalClients=0;
 var socketIds=[];
+let clients = new Map(); //key: socket / value: deviceWidth
 
 //wir fürs FlowField benötigt
 function make2Darray(n){
@@ -56,8 +58,8 @@ function newConnection(socket){
     socket.on('get', startMsg);
 
     function startMsg(data){
-        if(!socketIds.includes(socket.id)) {
-            socketIds.push(socket.id);
+        if(!clients.has(socket)) {
+            clients.set(socket, data.w);
             totalW+=data.w;
             if (data.h > maxH){
                 maxH = data.h;
@@ -97,7 +99,19 @@ function newConnection(socket){
         flowField = new FlowField(flowField.resolution,flowField.cols,flowField.rows,flowField.field);
         io.sockets.emit('update', flowField); //msg geht an alle clients
     }, getRandomInt(4200,42000));
+
+    socket.on('disconnect',function(){
+        console.log('disconnecettetdt ' + socket.id);
+        if(clients.has(socket)){
+            let disconnectedWidth = clients.get(socket);
+            totalW -= disconnectedWidth;
+            clients.delete(socket);
+        }
+
+    });
 }
+
+
 
 function calcVehicles(){
     for (let i=0; i<vehicles.length; i++){
