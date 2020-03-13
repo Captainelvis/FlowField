@@ -29,7 +29,7 @@ var cols;
 var rows;
 var field;
 //Anzahl particle pro CLient
-var vehicleNumber = 100;
+var vehicleNumber = 42;
 //Anzahl Clients
 var totalClients=0;
 var socketIds=[];
