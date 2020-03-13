@@ -12,7 +12,7 @@ var app = express();
 
 const http = require('http').createServer(app);
 const path = require('path');
-const publicPath = path.join(__dirname + 'public');
+const publicPath = path.join(__dirname + '/public');
 app.use(express.static(publicPath));
 http.listen(port, () => "App listening on Port: " + port)
 //console.log("my server is running"); //connected
