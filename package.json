@@ -1,0 +1,22 @@
+{
+  "name": "flowfield",
+  "version": "1.0.0",
+  "description": "flowFIeld CrossDevice Anim",
+  "main": "serverFlowField.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "less": "^3.11.1",
+    "node-sass": "^4.13.1",
+    "p5": "^1.0.0",
+    "simplex-noise": "^2.4.0",
+    "socket.io": "^2.3.0",
+    "victor": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon serverFlowField.js"
+  },
+  "author": "chrigl",
+  "license": "ISC"
+}
