@@ -1,4 +1,4 @@
-let socket;
+let socket = io();
 let settings={};
 
 //draws flowfield when - debug = true
@@ -13,8 +13,9 @@ function setup(){
     settings.h = height;
     settings.vehicles = [];
 
-    // socket=io.connect("http://localhost:3000");
-    socket=io.connect("http://10.155.117.116:3000");
+    //socket=io.connect("http://localhost:3000");
+    //socket=io.connect("http://10.155.117.116:3000");
+
     socket.emit('get',settings); //einmalige Anmeldung
 
     socket.on('get',getSettings);
