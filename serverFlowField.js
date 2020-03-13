@@ -24,12 +24,12 @@ let settings={}
 //Allgemeine Variablen für das FLowField
 var maxH = 0;
 var totalW = 0;
-var resolution = 42;
+var resolution = 80;
 var cols;
 var rows;
 var field;
 //Anzahl particle pro CLient
-var vehicleNumber = 4;
+var vehicleNumber = 100;
 //Anzahl Clients
 var totalClients=0;
 var socketIds=[];
