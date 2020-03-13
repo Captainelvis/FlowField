@@ -5,9 +5,10 @@ var flowField = [];
 var Vehicle = require('./public/p5NatureCode/flowFieldVehicle.js');
 var vehicles = [];
 //Socket server Zeug
+let port = process.env.PORT || 3000;
 var express = require('express');
-var app= express();
-var server = app.listen(3000);
+var app = express();
+var server = app.listen(port);
 //Allgemeine Variablen für das FLowField
 var maxH = 0;
 var totalW = 0;
