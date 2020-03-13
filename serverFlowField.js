@@ -1,8 +1,8 @@
 //FlowField Class einbinden
-var FlowField = require('./public/p5NatureCode/flowField.js');
+var FlowField = require('./server/flowField.js');
 var flowField = [];
 //Vehicle Class einbinden
-var Vehicle = require('./public/p5NatureCode/flowFieldVehicle.js');
+var Vehicle = require('./server/flowFieldVehicle.js');
 var vehicles = [];
 //Socket server Zeug
 let port = process.env.PORT || 3000;
@@ -38,7 +38,9 @@ function getRandomInt(min, max) {
   }
 
 //socket zeug
-app.use(express.static('public'));
+const path = require('path');
+const publicPath = path.join(__dirname + 'public');
+app.use(express.static(publicPath));
 console.log("my server is running"); //connected
 var socket = require('socket.io');
 var io = socket(server);
