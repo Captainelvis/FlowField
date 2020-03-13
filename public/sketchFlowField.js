@@ -7,7 +7,7 @@ let debug = false;
 function setup(){
     createCanvas(windowWidth,windowHeight);
     background(255);
-    pixelDensity(1); //retina sollte 2 haben
+    pixelDensity(2); //retina sollte 2 haben
 
     settings.w = width;
     settings.h = height;

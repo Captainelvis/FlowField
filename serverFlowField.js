@@ -23,7 +23,7 @@ let settings={}
 //Allgemeine Variablen für das FLowField
 var maxH = 0;
 var totalW = 0;
-var resolution = 20;
+var resolution = 15;
 var cols;
 var rows;
 var field;
