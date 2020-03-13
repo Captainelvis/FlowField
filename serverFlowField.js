@@ -4,11 +4,22 @@ var flowField = [];
 //Vehicle Class einbinden
 var Vehicle = require('./server/flowFieldVehicle.js');
 var vehicles = [];
+
 //Socket server Zeug
 let port = process.env.PORT || 3000;
 var express = require('express');
 var app = express();
-var server = app.listen(port);
+
+const http = require('http').createServer(app);
+const path = require('path');
+const publicPath = path.join(__dirname + 'public');
+app.use(express.static(publicPath));
+http.listen(port, () => "App listening on Port: " + port)
+//console.log("my server is running"); //connected
+var io = require('socket.io')(http);
+io.on('connection', newConnection);
+let settings={}
+
 //Allgemeine Variablen für das FLowField
 var maxH = 0;
 var totalW = 0;
@@ -37,15 +48,7 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
   }
 
-//socket zeug
-const path = require('path');
-const publicPath = path.join(__dirname + 'public');
-app.use(express.static(publicPath));
-console.log("my server is running"); //connected
-var socket = require('socket.io');
-var io = socket(server);
-io.sockets.on('connection', newConnection);
-let settings={}
+
 
 
 function newConnection(socket){
