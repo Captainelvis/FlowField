@@ -83,15 +83,15 @@ function displayVehicles(){
             push();
             translate(localPosX, vehicle.position.y);
             rotate(theta);
-            //fill(0);
-            // noStroke();
-            // ellipseMode(CENTER)
-            // ellipse(0, 0, vehicle.r)
-            rectMode(CENTER);
-            noFill();
-            stroke(0);
-            strokeWeight(2);
-            rect(0,0,vehicle.r,vehicle.r*2)
+            fill(0);
+            noStroke();
+            ellipseMode(CENTER)
+            ellipse(0, 0, vehicle.r)
+            // rectMode(CENTER);
+            // noFill();
+            // stroke(0);
+            // strokeWeight(2);
+            // rect(0,0,vehicle.r,vehicle.r*2)
             pop();
 //Draw SpermienSchwanz
             // noFill();
