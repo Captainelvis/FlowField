@@ -111,7 +111,7 @@ function displayVehicles(){
 
 function calcVehicles(){
     for (let i=0; i<settings.vehicles.length; i++){
-        vehicles[i].follow(settings.flowfield);
-        vehicles[i].run();
+        settings.vehicles[i].follow(settings.flowfield);
+        settings.vehicles[i].run();
     }
 }
