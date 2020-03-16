@@ -23,7 +23,7 @@ function setup(){
 }
 
 function getSettings(data){
-    settings=data;
+    settings=data;   
 }
 
 function updateSettings(data){
@@ -33,11 +33,11 @@ function updateSettings(data){
     if (debug == true) {
         displayFlow();
     }
+    displayVehicles();
 }
 
 function draw(){
     background(255,10);
-    displayVehicles();
 }
 //draw every vector
 function displayFlow(){
