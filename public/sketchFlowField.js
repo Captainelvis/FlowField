@@ -72,6 +72,7 @@ function drawVectorFlow(v,x,y,scayl){
 function displayVehicles(){
     for (let i = 0; i< settings.vehicles.length; i++){
         let vehicle = settings.vehicles[i];
+        vehicle[i].update();
         //check if position is on screen
         if (vehicle.position.x > settings.offsetbeginX && vehicle.position.x < settings.offsetendX){
             //draw triangle rotated in direction of velocity
