@@ -88,7 +88,7 @@ function displayVehicles(){
 //Draw SpermienSchwanz
             noFill();
             stroke(0);
-            strokeWeight(1);
+            strokeWeight(10);
             bezier(0,-this.r*2,0,this.r*2,0,this.r*2,map(noise(noiseValue),0,1,-this.r*4,this.r*4),this.r*6);
             pop();
             noiseValue += 0.01;
