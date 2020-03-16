@@ -81,16 +81,21 @@ function displayVehicles(){
             push();
             translate(localPosX, vehicle.position.y);
             rotate(theta);
-            fill(0);
-            noStroke();
-            ellipseMode(CENTER)
-            ellipse(0, 0, vehicle.r)
-//Draw SpermienSchwanz
+            //fill(0);
+            // noStroke();
+            // ellipseMode(CENTER)
+            // ellipse(0, 0, vehicle.r)
+            rectMode(CENTER);
             noFill();
             stroke(0);
-            strokeWeight(10);
-            bezier(0,-vehicle.r*2,0,vehicle.r*2,0,vehicle.r*2,map(noise(noiseValue),0,1,-vehicle.r*4,vehicle.r*4),vehicle.r*6);
-            pop();
+            strokeWeight(2);
+            rect(0,0,vehicle.r,vehicle.r)
+//Draw SpermienSchwanz
+            // noFill();
+            // stroke(0);
+            // strokeWeight(10);
+            // bezier(0,-vehicle.r*2,0,vehicle.r*2,0,vehicle.r*2,map(noise(noiseValue),0,1,-vehicle.r*4,vehicle.r*4),vehicle.r*6);
+            // pop();
             noiseValue += 0.01;
         }
     }
