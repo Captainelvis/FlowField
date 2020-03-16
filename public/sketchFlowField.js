@@ -1,8 +1,6 @@
 let socket = io();
 let settings={};
 
-let vehicleNumber = 1;
-
 let noiseValue = 0.1;
 
 //draws flowfield when - debug = true
@@ -27,15 +25,11 @@ function setup(){
 }
 
 function getSettings(data){
-    settings=data;  
-    console.log(settings);
-    for (let i = 0; i<vehicleNumber; i++){
-        settings.vehicles.push(new Vehicle(random(0,settings.totalW),random(0,settings.maxH),random(0.1,2),random(0.1,5),settings.totalW,settings.maxH))
-    } 
+    settings=data;   
 }
 
 function updateSettings(data){
-    // settings.vehicles = data;
+    settings.vehicles = data;
     //console.log(data);
 
     settings.flowField = data;
@@ -47,8 +41,7 @@ function updateSettings(data){
 
 function draw(){
     background(255,10);
-    //displayVehicles();
-    runVehicles();
+    displayVehicles();
 }
 //draw every vector
 function displayFlow(){
@@ -77,10 +70,6 @@ function drawVectorFlow(v,x,y,scayl){
     pop();
 }
 
-function runVehicles(){
-    calcVehicles();
-    displayVehicles();
-}
 function displayVehicles(){
     for (let i = 0; i< settings.vehicles.length; i++){
         let vehicle = settings.vehicles[i];
@@ -112,12 +101,5 @@ function displayVehicles(){
             // pop();
             noiseValue += 0.01;
         }
-    }
-}
-
-function calcVehicles(){
-    for (let i=0; i<settings.vehicles.length; i++){
-        settings.vehicles[i].follow(settings.field);
-        settings.vehicles[i].run();
     }
 }
