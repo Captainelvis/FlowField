@@ -69,9 +69,9 @@ function newConnection(socket){
             rows=maxH/resolution;
             field=make2Darray(cols);
             flowField = new FlowField(resolution,cols,rows,field);
-            for (let i = 0; i<vehicleNumber; i++){
-                vehicles.push(new Vehicle(getRandomInt(0,totalW),getRandomInt(0,maxH),getRandomInt(0.1,2),getRandomInt(0.1,5),totalW,maxH))
-            }
+            // for (let i = 0; i<vehicleNumber; i++){
+            //     vehicles.push(new Vehicle(getRandomInt(0,totalW),getRandomInt(0,maxH),getRandomInt(0.1,2),getRandomInt(0.1,5),totalW,maxH))
+            // }
         }
         settings={
             id: totalClients,
@@ -87,7 +87,7 @@ function newConnection(socket){
         }
 
         calcVehicles();
-        
+
         io.to(socket.id).emit('get', settings);//msg geht an client der gesendet hat
     }
     //alle so und so viele Sekunden/Frames wird die funktion aufgreufen
