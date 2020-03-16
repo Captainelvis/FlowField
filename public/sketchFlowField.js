@@ -29,7 +29,7 @@ function getSettings(data){
 }
 
 function updateSettings(data){
-    settings.vehicles = data;
+    // settings.vehicles = data;
     //console.log(data);
 
     settings.flowField = data;
@@ -41,7 +41,8 @@ function updateSettings(data){
 
 function draw(){
     background(255,10);
-    displayVehicles();
+    //displayVehicles();
+    runVehicles();
 }
 //draw every vector
 function displayFlow(){
@@ -70,6 +71,10 @@ function drawVectorFlow(v,x,y,scayl){
     pop();
 }
 
+function runVehicles(){
+    calcVehicles();
+    displayVehicles();
+}
 function displayVehicles(){
     for (let i = 0; i< settings.vehicles.length; i++){
         let vehicle = settings.vehicles[i];
@@ -101,5 +106,12 @@ function displayVehicles(){
             // pop();
             noiseValue += 0.01;
         }
+    }
+}
+
+function calcVehicles(){
+    for (let i=0; i<settings.vehicles.length; i++){
+        vehicles[i].follow(settings.flowfield);
+        vehicles[i].run();
     }
 }

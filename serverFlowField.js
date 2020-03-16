@@ -88,12 +88,12 @@ function newConnection(socket){
         io.to(socket.id).emit('get', settings);//msg geht an client der gesendet hat
     }
     //alle so und so viele Sekunden/Frames wird die funktion aufgreufen
-    setInterval(function(){
-        if(vehicles.length > 0){
-            calcVehicles();
-        }
-        io.sockets.emit('update', vehicles); //msg geht an alle clients
-    }, 16); // 1000 ms / 30 -> 33.3333  -> 30FPS /// p5 arbeitet mit ca, 60FPS, 30FPS genügt
+    // setInterval(function(){
+    //     if(vehicles.length > 0){
+    //         calcVehicles();
+    //     }
+    //     io.sockets.emit('update', vehicles); //msg geht an alle clients
+    // }, 16); // 1000 ms / 30 -> 33.3333  -> 30FPS /// p5 arbeitet mit ca, 60FPS, 30FPS genügt
 
     setInterval(function(){
         flowField = new FlowField(flowField.resolution,flowField.cols,flowField.rows,flowField.field);
@@ -113,9 +113,9 @@ function newConnection(socket){
 
 
 
-function calcVehicles(){
-    for (let i=0; i<vehicles.length; i++){
-         vehicles[i].follow(flowField);
-         vehicles[i].run();
-    }
-}
+// function calcVehicles(){
+//     for (let i=0; i<vehicles.length; i++){
+//          vehicles[i].follow(flowField);
+//          vehicles[i].run();
+//     }
+// }
