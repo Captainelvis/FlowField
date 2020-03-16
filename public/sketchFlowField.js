@@ -1,6 +1,8 @@
 let socket = io();
 let settings={};
 
+let noiseValue = 0.1;
+
 //draws flowfield when - debug = true
 let debug = false;
 
@@ -84,11 +86,12 @@ function displayVehicles(){
             ellipseMode(CENTER)
             ellipse(0, 0, vehicle.r)
 //Draw SpermienSchwanz
-            // noFill();
-            // stroke(0,100,0);
-            // strokeWeight(0.3);
-            //bezier(0,-this.r*2,0,this.r*2,0,this.r*2,map(noise(this.xOffNoise),0,1,-this.r*4,this.r*4),this.r*6);
+            noFill();
+            stroke(0);
+            strokeWeight(1);
+            bezier(0,-this.r*2,0,this.r*2,0,this.r*2,map(noise(noiseValue),0,1,-this.r*4,this.r*4),this.r*6);
             pop();
+            noiseValue += 0.01;
         }
     }
 }

@@ -6,7 +6,7 @@ class Vehicle {
         this.position = new Victor(x,y);
         this.acceleration = new Victor(0,0);
         this.velocity = new Victor(0,0);
-        this.r = 20;
+        this.r = 42;
         this.maxspeed = ms || 4;
         this.maxforce = mf || 0.5;
         this.ellipseSize = this.r * 3;
