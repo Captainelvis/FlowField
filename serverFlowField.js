@@ -116,6 +116,6 @@ function newConnection(socket){
 function calcVehicles(){
     for (let i=0; i<vehicles.length; i++){
          vehicles[i].follow(flowField);
-         vehicles[i].borders();
+         vehicles[i].run();
     }
 }

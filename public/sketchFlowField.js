@@ -30,7 +30,7 @@ function getSettings(data){
 
 function updateSettings(data){
     settings.vehicles = data;
-    console.log(data);
+    //console.log(data);
 
     settings.flowField = data;
     if (debug == true) {
@@ -73,7 +73,6 @@ function drawVectorFlow(v,x,y,scayl){
 function displayVehicles(){
     for (let i = 0; i< settings.vehicles.length; i++){
         let vehicle = settings.vehicles[i];
-        vehicle.updateVehicle();
         //check if position is on screen
         if (vehicle.position.x > settings.offsetbeginX && vehicle.position.x < settings.offsetendX){
             //draw triangle rotated in direction of velocity
@@ -102,14 +101,4 @@ function displayVehicles(){
             noiseValue += 0.01;
         }
     }
-}
-
-function updateVehicle(){
-    //update velocity
-    settings.vehicle.velocity.add(settings.vehicle.acceleration);
-    //limit speed
-    settings.vehicle.velocity.limit(4,0.75);
-    settings.vehicle.position.add(settings.vehicle.velocity);
-    //reset acceleration to 0
-    settings.vehicle.acceleration.multiply(settings.vehicle.resetAcceleration);
 }
