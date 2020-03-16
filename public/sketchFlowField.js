@@ -92,6 +92,7 @@ function displayVehicles(){
             stroke(0);
             strokeWeight(2);
             rect(0,0,vehicle.r,vehicle.r*2)
+            pop();
 //Draw SpermienSchwanz
             // noFill();
             // stroke(0);
