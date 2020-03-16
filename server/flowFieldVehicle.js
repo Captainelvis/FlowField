@@ -10,8 +10,6 @@ class Vehicle {
         this.maxspeed = ms || 4;
         this.maxforce = mf || 0.5;
         this.ellipseSize = this.r * 3;
-        this.xOffNoise = 0.1;
-        this.colorNoise = 0.1;
         this.totalWidth = w;
         this.maxHeight = h;
         this.resetAcceleration = new Victor(0,0);  
@@ -46,8 +44,6 @@ class Vehicle {
         this.position.add(this.velocity);
         //reset acceleration to 0
         this.acceleration.multiply(this.resetAcceleration);
-        this.xOffNoise += 0.02;
-        this.colorNoise += 0.01;
     }
 
     borders(){
