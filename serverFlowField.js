@@ -93,7 +93,7 @@ function newConnection(socket){
             calcVehicles();
         }
         io.sockets.emit('update', vehicles); //msg geht an alle clients
-    }, 60); // 1000 ms / 30 -> 33.3333  -> 30FPS /// p5 arbeitet mit ca, 60FPS, 30FPS genügt
+    }, 16); // 1000 ms / 30 -> 33.3333  -> 30FPS /// p5 arbeitet mit ca, 60FPS, 30FPS genügt
 
     setInterval(function(){
         flowField = new FlowField(flowField.resolution,flowField.cols,flowField.rows,flowField.field);
