@@ -85,6 +85,9 @@ function newConnection(socket){
             flowfield: flowField,
             vehicles: vehicles
         }
+
+        calcVehicles();
+        
         io.to(socket.id).emit('get', settings);//msg geht an client der gesendet hat
     }
     //alle so und so viele Sekunden/Frames wird die funktion aufgreufen
@@ -113,9 +116,9 @@ function newConnection(socket){
 
 
 
-// function calcVehicles(){
-//     for (let i=0; i<vehicles.length; i++){
-//          vehicles[i].follow(flowField);
-//          vehicles[i].run();
-//     }
-// }
+function calcVehicles(){
+    for (let i=0; i<vehicles.length; i++){
+         vehicles[i].follow(flowField);
+         vehicles[i].run();
+    }
+}
