@@ -35,11 +35,12 @@ function updateSettings(data){
     if (debug == true) {
         displayFlow();
     }
-    displayVehicles();
+    //displayVehicles();
 }
 
 function draw(){
     background(255,10);
+    displayVehicles();
 }
 //draw every vector
 function displayFlow(){
@@ -89,7 +90,7 @@ function displayVehicles(){
             noFill();
             stroke(0);
             strokeWeight(2);
-            rect(0,0,vehicle.r,vehicle.r)
+            rect(0,0,vehicle.r,vehicle.r*2)
 //Draw SpermienSchwanz
             // noFill();
             // stroke(0);
