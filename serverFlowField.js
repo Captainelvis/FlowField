@@ -29,7 +29,7 @@ var cols;
 var rows;
 var field;
 //Anzahl particle pro CLient
-var vehicleNumber = 42;
+var vehicleNumber = 10;
 //Anzahl Clients
 var totalClients=0;
 var socketIds=[];
@@ -93,7 +93,7 @@ function newConnection(socket){
             calcVehicles();
         }
         io.sockets.emit('update', vehicles); //msg geht an alle clients
-    }, 42); // 1000 ms / 30 -> 33.3333  -> 30FPS /// p5 arbeitet mit ca, 60FPS, 30FPS genügt
+    }, 50); // 1000 ms / 30 -> 33.3333  -> 30FPS /// p5 arbeitet mit ca, 60FPS, 30FPS genügt
 
     setInterval(function(){
         flowField = new FlowField(flowField.resolution,flowField.cols,flowField.rows,flowField.field);
