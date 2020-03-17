@@ -32,7 +32,6 @@ var field;
 var vehicleNumber = 20;
 //Anzahl Clients
 var totalClients=0;
-var socketIds=[];
 let clients = new Map(); //key: socket / value: deviceWidth
 
 //wir fürs FlowField benötigt
@@ -110,8 +109,6 @@ function newConnection(socket){
 
     });
 }
-
-
 
 function calcVehicles(){
     for (let i=0; i<vehicles.length; i++){

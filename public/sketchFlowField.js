@@ -16,7 +16,6 @@ function setup(){
     settings.vehicles = [];
 
     //socket=io.connect("http://localhost:3000");
-    //socket=io.connect("http://10.155.117.116:3000");
 
     socket.emit('get',settings); //einmalige Anmeldung
 
@@ -30,13 +29,11 @@ function getSettings(data){
 
 function updateSettings(data){
     settings.vehicles = data;
-    //console.log(data);
 
     settings.flowField = data;
     if (debug == true) {
         displayFlow();
     }
-    //displayVehicles();
 }
 
 function draw(){
@@ -83,17 +80,19 @@ function displayVehicles(){
             push();
             translate(localPosX, vehicle.position.y);
             rotate(theta);
+        //draw ellipse
             fill(0);
             noStroke();
             ellipseMode(CENTER)
             ellipse(0, 0, vehicle.r)
+        //draw Rect
             // rectMode(CENTER);
             // noFill();
             // stroke(0);
             // strokeWeight(2);
             // rect(0,0,vehicle.r,vehicle.r*2)
             pop();
-//Draw SpermienSchwanz
+        //Draw tail
             // noFill();
             // stroke(0);
             // strokeWeight(10);
