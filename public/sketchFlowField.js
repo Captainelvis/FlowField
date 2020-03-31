@@ -3,24 +3,29 @@ let settings={};
 
 let noiseValue = 0.1;
 
+let particleColor = 1;
+let newFlow = false;
+
 //draws flowfield when - debug = true
 let debug = false;
 
 function setup(){
     createCanvas(windowWidth,windowHeight);
-    background(255);
+    background(25,25,25);
     pixelDensity(2); //retina sollte 2 haben
 
     settings.w = width;
     settings.h = height;
     settings.vehicles = [];
 
+    //zum local laufen lassen
     //socket=io.connect("http://localhost:3000");
 
     socket.emit('get',settings); //einmalige Anmeldung
 
     socket.on('get',getSettings);
     socket.on('update',updateSettings);
+    socket.on('updateColor',updaateColor);
 }
 
 function getSettings(data){
@@ -36,8 +41,11 @@ function updateSettings(data){
     }
 }
 
+function updaateColor(data){
+    particleColor = data;
+}
 function draw(){
-    background(255,10);
+    background(25,25,25,2);
     displayVehicles();
 }
 //draw every vector
@@ -81,24 +89,54 @@ function displayVehicles(){
             translate(localPosX, vehicle.position.y);
             rotate(theta);
         //draw ellipse
-            fill(0);
+        if (particleColor === 0){
+            fill(255,231,70);
+        } else if (particleColor === 1){
+            fill(255,89,100);
+        } else if (particleColor === 2){
+            fill(153,213,201);
+        }
+        else if (particleColor === 3){
+            fill(229,99,153);
+        }
             noStroke();
             ellipseMode(CENTER)
-            ellipse(0, 0, vehicle.r)
-        //draw Rect
-            // rectMode(CENTER);
-            // noFill();
-            // stroke(0);
-            // strokeWeight(2);
-            // rect(0,0,vehicle.r,vehicle.r*2)
+            ellipse(0, 0, vehicle.r*2)
+            noFill();
+            if (particleColor === 0){
+                stroke(255,231,70);
+            } else if (particleColor === 1){
+                stroke(255,89,100);
+            } else if (particleColor === 2){
+                stroke(153,213,201);
+            }
+            else if (particleColor === 3){
+                stroke(229,99,153);
+            }
+            strokeWeight(1);
+            bezier(0,-vehicle.r*2,0,vehicle.r*2,0,vehicle.r*2,map(noise(noiseValue),0,1,-vehicle.r*4,vehicle.r*4),vehicle.r*6);
             pop();
-        //Draw tail
-            // noFill();
-            // stroke(0);
-            // strokeWeight(10);
-            // bezier(0,-vehicle.r*2,0,vehicle.r*2,0,vehicle.r*2,map(noise(noiseValue),0,1,-vehicle.r*4,vehicle.r*4),vehicle.r*6);
-            // pop();
             noiseValue += 0.01;
         }
+    }
+}
+
+function keyPressed(){
+    if (keyCode === 82){//R
+        if(particleColor===0){
+            particleColor ++;
+        }else if(particleColor ==1){
+            particleColor++
+        }else if(particleColor ==2){
+            particleColor++
+        }else if(particleColor ==3){
+            particleColor = 0;
+        }
+        socket.emit('color',particleColor);
+    }
+    if (keyCode === 70){ //F
+        newFlow = true;
+        socket.emit('newFlowField',newFlow);
+        newFlow = false;
     }
 }

@@ -31,7 +31,7 @@ class FlowField {
             let yoff = 0;
             for (let j = 0; j < this.rows; j++){
                 let theta = this.scale(this.simplex.noise2D(xoff,yoff),0,1,0,6.28318530717958647693); //letzte Zahl ist die Konstante TWO_PI (p5.js)
-                theta += 0.001;
+                theta += 0.0001;
                 this.field[i][j] = new Victor(Math.cos(theta), Math.sin(theta));
                 yoff += 0.01;
             }

@@ -15,7 +15,6 @@ const path = require('path');
 const publicPath = path.join(__dirname + '/public');
 app.use(express.static(publicPath));
 http.listen(port, () => "App listening on Port: " + port)
-//console.log("my server is running"); //connected
 var io = require('socket.io')(http);
 io.on('connection', newConnection);
 
@@ -29,7 +28,9 @@ var cols;
 var rows;
 var field;
 //Anzahl particle pro CLient
-var vehicleNumber = 20;
+var vehicleNumber = 100;
+
+var colorVehicle = 1;
 //Anzahl Clients
 var totalClients=0;
 let clients = new Map(); //key: socket / value: deviceWidth
@@ -49,9 +50,6 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
   }
 
-
-
-
 function newConnection(socket){
     console.log('new Connection = '+socket.id);
     socket.on('get', startMsg);
@@ -63,6 +61,7 @@ function newConnection(socket){
             if (data.h > maxH){
                 maxH = data.h;
             }
+
             totalClients++;
             cols=totalW/resolution;
             rows=maxH/resolution;
@@ -82,7 +81,7 @@ function newConnection(socket){
             rows: flowField.rows,
             field: flowField.field,
             flowfield: flowField,
-            vehicles: vehicles
+            vehicles: vehicles,
         }
         io.to(socket.id).emit('get', settings);//msg geht an client der gesendet hat
     }
@@ -91,13 +90,8 @@ function newConnection(socket){
         if(vehicles.length > 0){
             calcVehicles();
         }
-        io.sockets.emit('update', vehicles); //msg geht an alle clients
-    }, 16); // 1000 ms / 30 -> 33.3333  -> 30FPS /// p5 arbeitet mit ca, 60FPS, 30FPS genügt
-
-    setInterval(function(){
-        flowField = new FlowField(flowField.resolution,flowField.cols,flowField.rows,flowField.field);
-        io.sockets.emit('update', flowField); //msg geht an alle clients
-    }, 42000);
+        io.sockets.emit('update', vehicles);//msg geht an alle clients
+    }, 30); // 1000 ms / 30 -> 33.3333  -> 30FPS /// p5 arbeitet mit ca, 60FPS, 30FPS genügt
 
     socket.on('disconnect',function(){
         console.log('disconnecettetdt ' + socket.id);
@@ -106,8 +100,19 @@ function newConnection(socket){
             totalW -= disconnectedWidth;
             clients.delete(socket);
         }
-
     });
+    socket.on('color',function(data){
+        colorVehicle = data;
+        console.log(colorVehicle);
+        io.sockets.emit('updateColor',colorVehicle)
+    });
+
+    socket.on('newFlowField',function(data){
+        if (data == true){
+         flowField = new FlowField(flowField.resolution,flowField.cols,flowField.rows,flowField.field);
+         io.sockets.emit('update', flowField); //msg geht an alle clients
+        }
+    })
 }
 
 function calcVehicles(){
