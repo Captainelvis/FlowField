@@ -4,7 +4,7 @@
   "description": "flowFIeld CrossDevice Anim",
   "main": "serverFlowField.js",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "p5": "^1.0.0",
     "simplex-noise": "^2.4.0",
     "socket.io": "^2.3.0",
